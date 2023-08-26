@@ -17,11 +17,7 @@ func NewRouteRepositoryMysql(db *sql.DB) *RouteRepositoryMysql {
 }
 
 func (r *RouteRepositoryMysql) Create(route *entity.Route) error {
-	// sqlSmt := "INSERT INTO routes (id, name, source_lat, source_lng, destination_lat, destination_lng) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
-	// _, err := r.db.Exec(sqlSmt, route.ID, route.Name, route.Source.Lat, route.Source.Lng, route.Destination.Lat, route.Destination.Lng)
-	// if err != nil {
-	// 	return err
-	// }
+
 	return nil
 }
 
