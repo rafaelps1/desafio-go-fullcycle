@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:8.0.30-debian
+    command: --default-authentication-plugin=mysql_native_password
+    container_name: mysql
+    restart: always
+    tty: true
+    volumes:
+      - .docker/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=routes_db
+
+  routes:
+    build:
+      context: .
+    command: "go run main.go"
+    environment:
+      DB_USER: "root"
+      DB_PASSWORD: "root"
+      DB_HOST: "mysql"
+      DB_DATABASE: "routes_db"
+      DB_PORT: "3306"
+      PORT: "8080"
+    ports:
+      - "8080:8080"
+    container_name: routes
+    depends_on:
+      - mysql
